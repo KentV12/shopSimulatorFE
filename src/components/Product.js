@@ -33,14 +33,14 @@ const Product = () => {
       <div className="row">
         {products.map((product) => (
           <div className="col-sm">
-            <div class="card">
+            <div className="card">
               <img
                 src="https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg"
                 class="card-img-top"
                 alt=""
               />
-              <div class="card-body">
-                <h3 class="card-text">
+              <div className="card-body">
+                <h3 className="card-text">
                   {product.name} - ${product.price}
                 </h3>
               </div>
