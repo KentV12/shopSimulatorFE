@@ -1,25 +1,24 @@
-import React, { useState } from 'react'
+import { useState } from "react";
 
-const Register = ({handleRegister}) => {
+const Login = ({handleLogin}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleRegister({username, password});
+    handleLogin({username, password});
   }
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="exampleInputEmail1">Username</label>
-          <input type="text" className="form-control" onChange={(e) => setUsername(e.target.value)}/>
+          <label htmlFor="exampleInputEmail1">Email address</label>
+          <input type="text" className="form-control" onChange={(e) => setUsername(e.target.value)} />
         </div>
         <div className="form-group">
           <label htmlFor="exampleInputPassword1">Password</label>
-          <input type="password" className="form-control" onChange={(e) => setPassword(e.target.value)}/>
+          <input type="password" className="form-control" onChange={(e) => setPassword(e.target.value)} />
         </div>
         <button type="submit" className="btn btn-primary">Submit</button>
       </form>
@@ -27,4 +26,4 @@ const Register = ({handleRegister}) => {
   )
 }
 
-export default Register
+export default Login

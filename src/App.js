@@ -3,9 +3,12 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Product from "./components/Product";
 import Register from "./components/Register";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Login from "./components/Login";
+
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  // const [loggedIn, setLoggedIn] = useState(false);
 
   const handleRegister = async (userData) => {
     try {
@@ -18,11 +21,31 @@ function App() {
       });
 
       if (response.ok) {
-        // Successful login
-        // onLogin(); // Call the callback to update the logged-in state
+        // Successful registration
+      } else {
+        // Handle failed registration
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+    }
+  }
+
+  const handleLogin = async (userData) => {
+    try {
+      const response = await fetch('/authenticate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),
+      });
+
+      if (response.ok) {
+        response.text().then(function(data) {
+          console.log(data);
+        });
       } else {
         // Handle failed login
-        // You can display an error message to the user
       }
     } catch (error) {
       console.error('Error during login:', error);
@@ -35,12 +58,22 @@ function App() {
         <Navbar />
 
         <div className="container">
+          <Router>
+            <Routes>
+              <Route path="/" element={<Product />} />
+              <Route path="/login" element={<Login handleLogin={handleLogin} />} />
+              <Route path="/register" element={<Register handleRegister={handleRegister} />} />
+            </Routes>
+          </Router>
+        </div>
+
+        {/* <div className="container">
           {loggedIn ? (
             <Product />
           ) : (
             <Register handleRegister={handleRegister} />
           )}
-        </div>
+        </div> */}
 
       </div>
     </div>
