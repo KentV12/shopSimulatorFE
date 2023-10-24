@@ -6,9 +6,8 @@ import Register from "./components/Register";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./components/Login";
 
-
 function App() {
-  // const [loggedIn, setLoggedIn] = useState(false);
+  const [JWT, setJWT] = useState("");
 
   const handleRegister = async (userData) => {
     try {
@@ -42,7 +41,7 @@ function App() {
 
       if (response.ok) {
         response.text().then(function(data) {
-          console.log(data);
+          setJWT(data);
         });
       } else {
         // Handle failed login
@@ -58,22 +57,12 @@ function App() {
         <Navbar />
 
         <div className="container">
-          <Router>
-            <Routes>
-              <Route path="/" element={<Product />} />
-              <Route path="/login" element={<Login handleLogin={handleLogin} />} />
-              <Route path="/register" element={<Register handleRegister={handleRegister} />} />
-            </Routes>
-          </Router>
+          <Routes>
+            <Route path="/" element={<Product JWT={JWT} />} />
+            <Route path="/login" element={<Login handleLogin={handleLogin} />} />
+            <Route path="/register" element={<Register handleRegister={handleRegister} />} />
+          </Routes>
         </div>
-
-        {/* <div className="container">
-          {loggedIn ? (
-            <Product />
-          ) : (
-            <Register handleRegister={handleRegister} />
-          )}
-        </div> */}
 
       </div>
     </div>
