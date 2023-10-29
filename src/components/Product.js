@@ -31,7 +31,8 @@ const Product = ({JWT}) => {
 
     fetchData();
 
-  });
+  }, []); // need to include the dependency array [] or this will cause an infinite loop
+          // as useEffect will run after every re-render, which is the case after updating setProduct
 
   return (
     <div className="container">
