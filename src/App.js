@@ -3,7 +3,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Product from "./components/Product";
 import Register from "./components/Register";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import Login from "./components/Login";
 
 function App() {
@@ -58,7 +58,7 @@ function App() {
 
         <div className="container">
           <Routes>
-            <Route path="/" element={<Product JWT={JWT} />} />
+            <Route path="/" element={JWT !== "" ? (<Product JWT={JWT} />) : (<Navigate replace to={"/login"}/>)} />
             <Route path="/login" element={<Login handleLogin={handleLogin} />} />
             <Route path="/register" element={<Register handleRegister={handleRegister} />} />
           </Routes>
