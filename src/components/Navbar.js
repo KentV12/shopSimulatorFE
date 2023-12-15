@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <div className="container">
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
-            Shopping Simulator
+            <img src="https://freshcart.codescandy.com/assets/images/logo/freshcart-logo.svg" alt="" />
           </Link>
           <button
             className="navbar-toggler"
@@ -24,12 +24,12 @@ const Navbar = () => {
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link className="nav-link active" aria-current="page" to="/login">
-                  Login
+                  <img src={require("../images/person.svg").default} alt="person-circle" />
                 </Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/register">
-                  Register
+                  <img src={require("../images/cart.svg").default} alt="cart" />
                 </Link>
               </li>
             </ul>
