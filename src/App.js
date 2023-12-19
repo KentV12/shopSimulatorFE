@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-d
 import Login from "./components/Login";
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import Slider from "./components/Slider";
+import Home from "./components/Home";
 
 function App() {
     const [JWT, setJWT] = useState("");
@@ -54,18 +55,16 @@ function App() {
     }
 
     return (
-        <div>
+        <div className="container">
             <Navbar />
 
-            <div className="container">
             <Routes>
                 <Route path="/" element={JWT !== "" ? (<Product JWT={JWT} />) : (<Navigate replace to={"/login"}/>)} />
                 <Route path="/login" element={<Login handleLogin={handleLogin} />} />
                 <Route path="/register" element={<Register handleRegister={handleRegister} />} />
             </Routes>
-            </div>
-
-            <Slider />
+            
+            <Home />
         </div>
     );
 }
