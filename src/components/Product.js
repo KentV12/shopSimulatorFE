@@ -10,14 +10,14 @@ const Product = ({JWT}) => {
         
         try {
             const response = await fetch("/products", {
-            method: "GET",
-            headers: {
+                method: "GET",
+                headers: {
                 "Authorization" : `Bearer ${JWT}`,
             },
             });
 
             if (!response.ok) {
-            throw new Error("response not ok");
+                throw new Error("response not ok");
             }
 
             const json = await response.json();
@@ -35,7 +35,7 @@ const Product = ({JWT}) => {
             // as useEffect will run after every re-render, which is the case after updating setProduct
 
     return (
-        <div className="container">
+        <div>
             <table className="table">
                 <thead>
                 <tr>
