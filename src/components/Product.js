@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import { Card } from "react-bootstrap";
+import { Row } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 
 import React from "react";
 
@@ -27,7 +30,7 @@ const Product = ({ JWT }) => {
     };
 
     fetchData();
-  }, []); // need to include the dependency array [] or this will cause an infinite loop
+  }, [JWT]); // need to include the dependency array [] or this will cause an infinite loop
   // as useEffect will run after every re-render, which is the case after updating setProduct
 
   return (
@@ -67,6 +70,25 @@ const Product = ({ JWT }) => {
           </div>
         ))}
       </div>
+
+      <Row xs={1} md={2} className="g-4">
+        {products.map((product, i) => (
+          <Col key={i}>
+            <Card>
+              <Card.Img variant="top" src="https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg" />
+              <Card.Body>
+                <Card.Title>Card title</Card.Title>
+                <Card.Text>
+                  This is a longer card with supporting text below as a natural
+                  lead-in to additional content. This content is a little bit
+                  longer. {product.name} - ${product.price}
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+
     </div>
   );
 };

@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Slider from "./Slider";
+import { Card } from "react-bootstrap";
+import { Row } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -66,6 +69,22 @@ const Home = () => {
           </div>
         ))}
       </div>
+
+      <Row xs={1} md={5} className="g-4">
+        {products.map((product, i) => (
+          <Col key={i}>
+            <Card>
+              <Card.Img variant="top" src="https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg" />
+              <Card.Body>
+                <Card.Title>{product.name}</Card.Title>
+                <Card.Text>
+                  ${product.price}
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
     </div>
   );
 };
