@@ -8,7 +8,7 @@ const Slider = () => {
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src="https://img.freepik.com/premium-photo/food-background-pasta-chicken-pumpkin-salad-meat-mushrooms-vegetables-black-stone-background-top-view-free-space-text_187166-31381.jpg"
+            src={require("../test/pizza.jpg")}
             alt="food-item1"
           />
           <Carousel.Caption className="text-start text-dark">
@@ -19,7 +19,7 @@ const Slider = () => {
         <Carousel.Item>
           <img
             className="d-block w-100 h-50"
-            src="https://previews.123rf.com/images/vell/vell1508/vell150800015/43556048-healthy-breakfast-with-natural-dairy-products-top-view-horizontal-food-background.jpg"
+            src={require("../test/salad.jpg")}
             alt="food-item2"
           />
           <Carousel.Caption className="text-start text-dark">
