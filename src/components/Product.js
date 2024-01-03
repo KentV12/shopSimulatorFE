@@ -35,12 +35,18 @@ const Product = () => {
     <Row xs={1} md={5} className="g-4 mt-5">
       {products.map((product, i) => (
         <Col key={i}>
-          <Card>
-            <Card.Img variant="top" src="https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg" />
+          <Card className="hoverHighlight">
+            <Card.Img variant="top" src="https://karantenabc.hu/img/44906/596238/440x440,r/596238.jpg?time=1690947737" />
             <Card.Body>
               <Card.Title>{product.name}</Card.Title>
               <Card.Text>
-                ${product.price}
+                <div>
+                  <small className="text-muted">Category</small>
+                </div>
+                <div className="d-flex justify-content-between align-items-center mt-3">
+                  <h3>${product.price}</h3>
+                  <button className="btn btn-success">Add</button>
+                </div>
               </Card.Text>
             </Card.Body>
           </Card>
