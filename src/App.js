@@ -60,7 +60,7 @@ function App() {
 
   return (
     <div className="container">
-      <Navbar />
+      <Navbar JWT={JWT}/>
 
       <Routes>
         <Route

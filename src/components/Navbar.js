@@ -5,11 +5,15 @@ import { Modal } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 
-const Navbar = () => {
+const Navbar = ({JWT}) => {
   const [show, setShow] = useState(false);
+  const [isRegistering, setModal] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const showSignin = () => setModal(false);
+  const showRegister = () => setModal(true);
 
   return (
     <div>
@@ -49,7 +53,11 @@ const Navbar = () => {
                 </button>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/register">
+                <Link className="nav-link" to={JWT !== "" ? (
+                  "/"
+                ) : (
+                  "/login"
+                )}>
                   <img src={require("../images/cart.svg").default} alt="cart" />
                 </Link>
               </li>
@@ -60,7 +68,9 @@ const Navbar = () => {
 
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Sign Up</Modal.Title>
+          <Modal.Title>
+            {isRegistering ? "Register" : "Sign in"}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -76,12 +86,12 @@ const Navbar = () => {
               <Form.Control type="password" placeholder="Password" />
             </Form.Group>
             <Button variant="success" type="submit">
-              Register
+              {isRegistering ? "Register" : "Sign in"}
             </Button>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <p>Already have an account? <span className="text-success">Sign in</span></p>
+          <p>Already have an account? <span role="button" onClick={isRegistering ? showSignin : showRegister} className="text-success">Sign in</span></p>
         </Modal.Footer>
       </Modal>
     </div>
