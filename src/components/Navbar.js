@@ -91,7 +91,7 @@ const Navbar = ({JWT}) => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <p>Already have an account? <span role="button" onClick={isRegistering ? showSignin : showRegister} className="text-success">Sign in</span></p>
+          <p>{isRegistering ? "Already" : "Don't"} have an account? <span role="button" onClick={isRegistering ? showSignin : showRegister} className="text-success">{isRegistering ? "Sign in" : "Sign up"}</span></p>
         </Modal.Footer>
       </Modal>
     </div>

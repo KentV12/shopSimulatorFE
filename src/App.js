@@ -12,6 +12,7 @@ import {
 import Login from "./components/Login";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./components/Home";
+import Tabs from "./components/Subnav";
 
 function App() {
   const [JWT, setJWT] = useState("");
@@ -61,6 +62,7 @@ function App() {
   return (
     <div className="container">
       <Navbar JWT={JWT}/>
+      <Tabs />
 
       <Routes>
         <Route
