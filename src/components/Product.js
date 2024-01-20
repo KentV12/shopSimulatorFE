@@ -41,7 +41,7 @@ const Product = () => {
               <Card.Title>{product.name}</Card.Title>
               <Card.Text>
                 <div>
-                  <small className="text-muted">Category</small>
+                  <small className="text-muted">{product.category}</small>
                 </div>
                 <div className="d-flex justify-content-between align-items-center mt-3">
                   <h3>${product.price}</h3>
