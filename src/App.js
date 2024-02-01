@@ -13,9 +13,11 @@ import Login from "./components/Login";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./components/Home";
 import Tabs from "./components/Subnav";
+import CartCanvas from "./components/CartCanvas";
 
 function App() {
   const [JWT, setJWT] = useState("");
+  const [displayCart, setDisplayCart] = useState(false);
 
   const handleRegister = async (userData) => {
     try {
@@ -59,10 +61,16 @@ function App() {
     }
   };
 
+  const handleCart = () => {
+    setDisplayCart(!displayCart);
+  }
+
   return (
     <div className="container">
-      <Navbar JWT={JWT}/>
+      <Navbar JWT={JWT} handleCart={handleCart}/>
       <Tabs />
+
+      <CartCanvas displayCart={displayCart} handleClose={handleCart}/>
 
       <Routes>
         <Route

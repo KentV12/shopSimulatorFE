@@ -5,7 +5,7 @@ import { Modal } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 
-const Navbar = ({JWT}) => {
+const Navbar = ({ JWT, handleCart }) => {
   const [show, setShow] = useState(false);
   const [isRegistering, setModal] = useState(false);
 
@@ -53,13 +53,15 @@ const Navbar = ({JWT}) => {
                 </button>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to={JWT !== "" ? (
-                  "/"
-                ) : (
-                  "/login"
-                )}>
+                <button
+                  onClick={handleCart}
+                  className="nav-link"
+                  aria-current="page1"
+                  to="/"
+                ></button>
+                {/* <Link className="nav-link" to={JWT !== "" ? "/" : "/login"}> */}
                   <img src={require("../images/cart.svg").default} alt="cart" />
-                </Link>
+                {/* </Link> */}
               </li>
             </ul>
           </div>
@@ -68,9 +70,7 @@ const Navbar = ({JWT}) => {
 
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
-          <Modal.Title>
-            {isRegistering ? "Register" : "Sign in"}
-          </Modal.Title>
+          <Modal.Title>{isRegistering ? "Register" : "Sign in"}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -91,7 +91,16 @@ const Navbar = ({JWT}) => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <p>{isRegistering ? "Already" : "Don't"} have an account? <span role="button" onClick={isRegistering ? showSignin : showRegister} className="text-success">{isRegistering ? "Sign in" : "Sign up"}</span></p>
+          <p>
+            {isRegistering ? "Already" : "Don't"} have an account?{" "}
+            <span
+              role="button"
+              onClick={isRegistering ? showSignin : showRegister}
+              className="text-success"
+            >
+              {isRegistering ? "Sign in" : "Sign up"}
+            </span>
+          </p>
         </Modal.Footer>
       </Modal>
     </div>
