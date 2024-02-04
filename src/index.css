@@ -1,3 +1,15 @@
 .hoverHighlight:hover {
     outline: 1px solid green;
 }
+
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+.dropdown-menu {
+    min-width: 700px !important;
+}
+
+.text-newgreen {
+    color: rgb(104, 231, 97) !important;
+}
