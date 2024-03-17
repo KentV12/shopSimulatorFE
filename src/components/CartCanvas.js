@@ -4,9 +4,9 @@ import { Offcanvas } from 'react-bootstrap'
 const CartCanvas = ({displayCart, handleClose}) => {
   return (
     <div>
-      <Offcanvas show={displayCart} onHide={handleClose}>
+      <Offcanvas placement='end' show={displayCart} onHide={handleClose}>
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+          <Offcanvas.Title>Cart</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           Some text as placeholder. In real life you can have the elements you

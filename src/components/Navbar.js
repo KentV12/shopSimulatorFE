@@ -58,10 +58,11 @@ const Navbar = ({ JWT, handleCart }) => {
                   className="nav-link"
                   aria-current="page1"
                   to="/"
-                ></button>
+                >
                 {/* <Link className="nav-link" to={JWT !== "" ? "/" : "/login"}> */}
                   <img src={require("../images/cart.svg").default} alt="cart" />
                 {/* </Link> */}
+                </button>
               </li>
             </ul>
           </div>
