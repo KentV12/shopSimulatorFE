@@ -1,19 +1,34 @@
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 
-const Navbar = ({ JWT, handleCart }) => {
+const Navbar = ({ JWT, handleCart, handleLogin, handleRegister }) => {
   const [show, setShow] = useState(false);
   const [isRegistering, setModal] = useState(false);
 
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    if (JWT !== "") {
+      navigate("/account");
+    } else {
+      setShow(true);
+    }
+  };
 
   const showSignin = () => setModal(false);
   const showRegister = () => setModal(true);
+
+  const userLogin = (e) => {
+    e.preventDefault();
+    handleLogin({ username, password });
+  };
 
   return (
     <div>
@@ -59,9 +74,9 @@ const Navbar = ({ JWT, handleCart }) => {
                   aria-current="page1"
                   to="/"
                 >
-                {/* <Link className="nav-link" to={JWT !== "" ? "/" : "/login"}> */}
+                  {/* <Link className="nav-link" to={JWT !== "" ? "/" : "/login"}> */}
                   <img src={require("../images/cart.svg").default} alt="cart" />
-                {/* </Link> */}
+                  {/* </Link> */}
                 </button>
               </li>
             </ul>
@@ -69,22 +84,31 @@ const Navbar = ({ JWT, handleCart }) => {
         </div>
       </nav>
 
+      {/* Login Modal */}
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>{isRegistering ? "Register" : "Sign in"}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form onSubmit={userLogin}>
+            <Form.Group className="mb-3">
               <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Control
+                type="text"
+                placeholder="Enter email"
+                onChange={(e) => setUsername(e.target.value)}
+              />
               <Form.Text className="text-muted">
                 We'll never share your email with anyone else.
               </Form.Text>
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Group className="mb-3">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" />
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </Form.Group>
             <Button variant="success" type="submit">
               {isRegistering ? "Register" : "Sign in"}

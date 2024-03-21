@@ -12,8 +12,9 @@ import {
 import Login from "./components/Login";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./components/Home";
-import Tabs from "./components/Subnav";
+import Subnav from "./components/Subnav";
 import CartCanvas from "./components/CartCanvas";
+import Account from "./components/Account";
 
 function App() {
   const [JWT, setJWT] = useState("");
@@ -67,8 +68,8 @@ function App() {
 
   return (
     <div className="container">
-      <Navbar JWT={JWT} handleCart={handleCart}/>
-      <Tabs />
+      <Navbar JWT={JWT} handleCart={handleCart} handleLogin={handleLogin} handleRegister={handleRegister}/>
+      <Subnav />
 
       <CartCanvas displayCart={displayCart} handleClose={handleCart}/>
 
@@ -83,14 +84,15 @@ function App() {
             )
           }
         />
-        <Route path="/login" element={<Login handleLogin={handleLogin} />} />
+        <Route path="/login" element={<Home />} />
         <Route
           path="/register"
           element={<Register handleRegister={handleRegister} />}
         />
+        <Route path="/account" element={<Account />} />
       </Routes>
 
-      <Home />
+      
     </div>
   );
 }
