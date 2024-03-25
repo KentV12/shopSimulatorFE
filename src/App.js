@@ -20,6 +20,10 @@ function App() {
   const [JWT, setJWT] = useState("");
   const [displayCart, setDisplayCart] = useState(false);
 
+  const handleLogout = () => {
+    setJWT("");
+  };
+
   const handleRegister = async (userData) => {
     try {
       const response = await fetch("/register", {
@@ -64,16 +68,27 @@ function App() {
 
   const handleCart = () => {
     setDisplayCart(!displayCart);
-  }
+  };
 
   return (
     <div className="container">
-      <Navbar JWT={JWT} handleCart={handleCart} handleLogin={handleLogin} handleRegister={handleRegister}/>
+      <Navbar
+        JWT={JWT}
+        handleCart={handleCart}
+        handleLogin={handleLogin}
+        handleRegister={handleRegister}
+      />
       <Subnav />
 
-      <CartCanvas displayCart={displayCart} handleClose={handleCart}/>
+      <CartCanvas displayCart={displayCart} handleClose={handleCart} />
 
       <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/account" element={<Account />} />
+        {/* product page  route */}
+      </Routes>
+
+      {/* <Routes>
         <Route
           path="/"
           element={
@@ -90,9 +105,7 @@ function App() {
           element={<Register handleRegister={handleRegister} />}
         />
         <Route path="/account" element={<Account />} />
-      </Routes>
-
-      
+      </Routes> */}
     </div>
   );
 }

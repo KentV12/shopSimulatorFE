@@ -25,8 +25,17 @@ const Navbar = ({ JWT, handleCart, handleLogin, handleRegister }) => {
   const showSignin = () => setModal(false);
   const showRegister = () => setModal(true);
 
+  const userCart = () => {
+    if (JWT !== "") {
+      handleCart();
+    } else {
+      setShow(true);
+    }
+  }
+
   const userLogin = (e) => {
     e.preventDefault();
+    setShow(false);
     handleLogin({ username, password });
   };
 
@@ -69,7 +78,7 @@ const Navbar = ({ JWT, handleCart, handleLogin, handleRegister }) => {
               </li>
               <li className="nav-item">
                 <button
-                  onClick={handleCart}
+                  onClick={userCart}
                   className="nav-link"
                   aria-current="page1"
                   to="/"
