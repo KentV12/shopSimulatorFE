@@ -36,7 +36,7 @@ const Product = () => {
       {products.map((product, i) => (
         <Col key={i}>
           <Card className="hoverHighlight">
-            <Card.Img variant="top" src="https://karantenabc.hu/img/44906/596238/440x440,r/596238.jpg?time=1690947737" />
+            <Card.Img variant="top" src={product.imageLink} style={{ height: '200px', objectFit: 'cover' }}/>
             <Card.Body>
               <Card.Title>{product.name}</Card.Title>
               <Card.Text>

@@ -12,8 +12,6 @@ const Slider = () => {
             alt="food-item1"
           />
           <Carousel.Caption className="text-start text-dark">
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -23,8 +21,6 @@ const Slider = () => {
             alt="food-item2"
           />
           <Carousel.Caption className="text-start text-dark">
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>

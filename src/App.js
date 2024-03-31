@@ -67,6 +67,9 @@ function App() {
   };
 
   const handleCart = () => {
+
+    
+
     setDisplayCart(!displayCart);
   };
 
@@ -85,7 +88,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/account" element={<Account />} />
-        {/* product page  route */}
+        {/* product page route */}
       </Routes>
 
       {/* <Routes>
