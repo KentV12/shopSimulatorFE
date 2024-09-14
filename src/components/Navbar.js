@@ -39,6 +39,12 @@ const Navbar = ({ JWT, handleCart, handleLogin, handleRegister }) => {
     handleLogin({ username, password });
   };
 
+  const userRegister = (e) => {
+    e.preventDefault();
+    setShow(false);
+    handleRegister({ username, password });
+  };
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg">
@@ -99,7 +105,7 @@ const Navbar = ({ JWT, handleCart, handleLogin, handleRegister }) => {
           <Modal.Title>{isRegistering ? "Register" : "Sign in"}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={userLogin}>
+          <Form onSubmit={isRegistering ? userRegister : userLogin}>
             <Form.Group className="mb-3">
               <Form.Label>Email address</Form.Label>
               <Form.Control

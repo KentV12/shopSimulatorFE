@@ -67,9 +67,6 @@ function App() {
   };
 
   const handleCart = () => {
-
-    
-
     setDisplayCart(!displayCart);
   };
 
@@ -87,7 +84,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/account" element={<Account />} />
+        <Route path="/account" element={<Account handleLogout={handleLogout}/>} />
         {/* product page route */}
       </Routes>
 

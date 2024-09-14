@@ -32,27 +32,30 @@ const Product = () => {
   // as useEffect will run after every re-render, which is the case after updating setProduct
 
   return (
-    <Row xs={1} md={5} className="g-4 mt-5">
-      {products.map((product, i) => (
-        <Col key={i}>
-          <Card className="hoverHighlight">
-            <Card.Img variant="top" src={product.imageLink} style={{ height: '200px', objectFit: 'cover' }}/>
-            <Card.Body>
-              <Card.Title>{product.name}</Card.Title>
-              <Card.Text>
-                <div>
-                  <small className="text-muted">{product.category}</small>
-                </div>
-                <div className="d-flex justify-content-between align-items-center mt-3">
-                  <h3>${product.price}</h3>
-                  <button className="btn btn-success">Add</button>
-                </div>
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-      ))}
-    </Row>
+    <div>
+      <h3 className="mt-5">Popular Products</h3>
+      <Row xs={1} md={5} className="g-4 mt-1">
+        {products.map((product, i) => (
+          <Col key={i}>
+            <Card className="hoverHighlight">
+              <Card.Img variant="top" src={product.imageLink} style={{ height: '200px', objectFit: 'cover' }}/>
+              <Card.Body>
+                <Card.Title>{product.name}</Card.Title>
+                <Card.Text>
+                  <div>
+                    <small className="text-muted">{product.category}</small>
+                  </div>
+                  <div className="d-flex justify-content-between align-items-center mt-3">
+                    <h3>${product.price}</h3>
+                    <button className="btn btn-success">Add</button>
+                  </div>
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+    </div>
   );
 };
 
