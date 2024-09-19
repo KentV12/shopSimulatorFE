@@ -15,6 +15,7 @@ import Home from "./components/Home";
 import Subnav from "./components/Subnav";
 import CartCanvas from "./components/CartCanvas";
 import Account from "./components/Account";
+import ProtectedRoutes from "./components/ProtectedRoutes";
 
 function App() {
   const [JWT, setJWT] = useState("");
@@ -78,13 +79,15 @@ function App() {
         handleLogin={handleLogin}
         handleRegister={handleRegister}
       />
-      <Subnav />
 
+      <Subnav />
       <CartCanvas displayCart={displayCart} handleClose={handleCart} />
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/account" element={<Account handleLogout={handleLogout}/>} />
+        <Route element={<ProtectedRoutes JWT={JWT} />}>
+          <Route path="/account" element={<Account handleLogout={handleLogout} JWT={JWT}/>} />
+        </Route>
         {/* product page route */}
       </Routes>
 
