@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap'
 
 const Account = ({handleLogout, JWT}) => {
+  const [problem, setProblem] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const handleRequest = async () => {
@@ -15,22 +17,34 @@ const Account = ({handleLogout, JWT}) => {
         });
 
         if (response.ok) {
-          // Successful registration
+          // Successful
+          setLoading(false)
+          console.log(JWT);
         } else {
-          // Handle failed registration
+          // Handle failed
+          setProblem(true);
         }
       } catch (error) {
-        console.error("Error during login:", error);
+        console.log("Error during JWT authentication");
+        setProblem(true);
       }
     };
 
     handleRequest();
-  }, []);
+  }, [JWT]);
+
+  if (problem) {
+    return <div>error</div>
+  }
+
+  if (loading) { // prevents flashes account content below since UseEffect() takes non-zero time to fetch
+    return <div>loading...</div>
+  }
 
   return (
     <div>
-        <h1>User Account</h1>
-        <Button variant='primary' onSubmit={handleLogout}>Logout</Button>
+      <h1>User Account</h1>
+      <Button variant='primary' onSubmit={handleLogout}>Logout</Button>
     </div>
   )
 }

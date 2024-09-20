@@ -42,13 +42,13 @@ const Product = () => {
               <Card.Body>
                 <Card.Title>{product.name}</Card.Title>
                 <Card.Text>
-                  <div>
+                  <span>
                     <small className="text-muted">{product.category}</small>
-                  </div>
-                  <div className="d-flex justify-content-between align-items-center mt-3">
-                    <h3>${product.price}</h3>
+                  </span>
+                  <span className="d-flex justify-content-between align-items-center mt-3">
+                    <strong>${product.price}</strong>
                     <button className="btn btn-success">Add</button>
-                  </div>
+                  </span>
                 </Card.Text>
               </Card.Body>
             </Card>
