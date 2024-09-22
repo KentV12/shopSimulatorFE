@@ -44,7 +44,7 @@ const Account = ({handleLogout, JWT}) => {
   return (
     <div>
       <h1>User Account</h1>
-      <Button variant='primary' onSubmit={handleLogout}>Logout</Button>
+      <Button variant='primary' onClick={handleLogout}>Logout</Button>
     </div>
   )
 }
