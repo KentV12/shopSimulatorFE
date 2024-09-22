@@ -81,7 +81,7 @@ function App() {
       />
 
       <Subnav />
-      <CartCanvas displayCart={displayCart} handleClose={handleCart} />
+      <CartCanvas displayCart={displayCart} handleClose={handleCart} JWT={JWT}/>
 
       <Routes>
         <Route path="/" element={<Home />} />
