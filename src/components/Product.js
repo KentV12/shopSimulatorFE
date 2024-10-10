@@ -1,35 +1,34 @@
-import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import { Row } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 
 import React from "react";
 
-const Product = () => {
-  const [products, setProducts] = useState([]);
+const Product = ({products, addToCart}) => {
+  // const [products, setProducts] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("/homeProducts", {
-          method: "GET",
-          headers: {},
-        });
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch("/products", {
+  //         method: "GET",
+  //         headers: {},
+  //       });
 
-        if (!response.ok) {
-          throw new Error("response not ok");
-        }
+  //       if (!response.ok) {
+  //         throw new Error("response not ok");
+  //       }
 
-        const json = await response.json();
-        setProducts(json);
-      } catch (error) {
-        console.error("error fetching data: ", error);
-      }
-    };
+  //       const json = await response.json();
+  //       setProducts(json);
+  //     } catch (error) {
+  //       console.error("error fetching data: ", error);
+  //     }
+  //   };
 
-    fetchData();
-  }, []); // need to include the dependency array [] or this will cause a loop to server
-  // as useEffect will run after every re-render, which is the case after updating setProduct
+  //   fetchData();
+  // }, []); // need to include the dependency array [] or this will cause a loop to server
+  // // as useEffect will run after every re-render, which is the case after updating setProduct
 
   return (
     <div>
@@ -47,7 +46,7 @@ const Product = () => {
                   </span>
                   <span className="d-flex justify-content-between align-items-center mt-3">
                     <strong>${product.price}</strong>
-                    <button className="btn btn-success">Add</button>
+                    <button className="btn btn-success" onClick={() => addToCart(product)}>Add</button>
                   </span>
                 </Card.Text>
               </Card.Body>

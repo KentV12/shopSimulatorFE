@@ -1,11 +1,11 @@
 import Slider from "./Slider";
 import Product from "./Product";
 
-const Home = () => {
+const Home = ({products, addToCart}) => {
   return (
     <div>
       <Slider />
-      <Product />
+      <Product products={products} addToCart={addToCart} />
     </div>
   );
 };

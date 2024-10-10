@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Product from "./components/Product";
@@ -20,10 +20,17 @@ import ProtectedRoutes from "./components/ProtectedRoutes";
 function App() {
   const [JWT, setJWT] = useState("");
   const [displayCart, setDisplayCart] = useState(false);
+  const [items, setItems] = useState([]);
+  const [products, setProducts] = useState([]);
 
   const handleLogout = () => {
     setJWT("");
   };
+
+  const addToCart = (newItem) => {
+    setItems([...items, newItem]);
+    console.log(items);
+  }
 
   const handleRegister = async (userData) => {
     try {
@@ -71,6 +78,29 @@ function App() {
     setDisplayCart(!displayCart);
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/products", {
+          method: "GET",
+          headers: {},
+        });
+
+        if (!response.ok) {
+          throw new Error("response not ok");
+        }
+
+        const json = await response.json();
+        setProducts(json);
+      } catch (error) {
+        console.error("error fetching data: ", error);
+      }
+    };
+
+    fetchData();
+  }, []); // need to include the dependency array [] or this will cause a loop to server
+  // as useEffect will run after every re-render, which is the case after updating setProduct
+
   return (
     <div className="container">
       <Navbar
@@ -81,34 +111,14 @@ function App() {
       />
 
       <Subnav />
-      <CartCanvas displayCart={displayCart} handleClose={handleCart} JWT={JWT}/>
+      <CartCanvas displayCart={displayCart} handleClose={handleCart} JWT={JWT} cartItems={items}/>
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home products={products} addToCart={addToCart} />} />
         <Route element={<ProtectedRoutes JWT={JWT} />}>
           <Route path="/account" element={<Account handleLogout={handleLogout} JWT={JWT}/>} />
         </Route>
-        {/* product page route */}
       </Routes>
-
-      {/* <Routes>
-        <Route
-          path="/"
-          element={
-            JWT !== "" ? (
-              <Product JWT={JWT} />
-            ) : (
-              <Navigate replace to={"/login"} />
-            )
-          }
-        />
-        <Route path="/login" element={<Home />} />
-        <Route
-          path="/register"
-          element={<Register handleRegister={handleRegister} />}
-        />
-        <Route path="/account" element={<Account />} />
-      </Routes> */}
     </div>
   );
 }
