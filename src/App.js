@@ -16,6 +16,7 @@ import Subnav from "./components/Subnav";
 import CartCanvas from "./components/CartCanvas";
 import Account from "./components/Account";
 import ProtectedRoutes from "./components/ProtectedRoutes";
+import Toast, { showToast } from "./components/Toast";
 
 function App() {
   const [JWT, setJWT] = useState("");
@@ -29,7 +30,8 @@ function App() {
 
   const addToCart = (newItem) => {
     setItems([...items, newItem]);
-    console.log(items);
+    // console.log(items);
+    showToast("Added to cart");
   }
 
   const handleRegister = async (userData) => {
@@ -112,6 +114,7 @@ function App() {
 
       <Subnav />
       <CartCanvas displayCart={displayCart} handleClose={handleCart} JWT={JWT} cartItems={items}/>
+      <Toast />
 
       <Routes>
         <Route path="/" element={<Home products={products} addToCart={addToCart} />} />
