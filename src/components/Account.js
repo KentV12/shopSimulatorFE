@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button } from 'react-bootstrap'
+import { Button, Table } from 'react-bootstrap'
 
 const Account = ({handleLogout, JWT}) => {
   const [problem, setProblem] = useState(false);
@@ -43,8 +43,37 @@ const Account = ({handleLogout, JWT}) => {
 
   return (
     <div>
-      <h1>User Account</h1>
-      <Button variant='primary' onClick={handleLogout}>Logout</Button>
+      <div className='d-flex my-5'>
+        <h1>Order History</h1>
+        <Button style={{ fontWeight: 'bold' }} className='ms-auto fixed-button' variant='primary' onClick={handleLogout}>Logout</Button>
+      </div>
+      
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>Order Number</th>
+            <th>Date</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>#11231</td>
+            <td>11/12/2024</td>
+            <td>$12.52</td>
+          </tr>
+          <tr>
+            <td>#24512</td>
+            <td>11/12/2024</td>
+            <td>$25.12</td>
+          </tr>
+          <tr>
+            <td>#41233</td>
+            <td>11/12/2024</td>
+            <td>$117.03</td>
+          </tr>
+        </tbody>
+      </Table>
     </div>
   )
 }

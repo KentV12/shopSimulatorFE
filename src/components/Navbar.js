@@ -51,8 +51,8 @@ const Navbar = ({ JWT, handleCart, handleLogin, handleRegister }) => {
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
             <img
-              // src="https://freshcart.codescandy.com/assets/images/logo/freshcart-logo.svg"
-              src={require("../test/brand-logo.svg").default}
+              src="https://freshcart.codescandy.com/assets/images/logo/freshcart-logo.svg"
+              // src={require("../test/brand-logo.svg").default}
               alt=""
             />
           </Link>

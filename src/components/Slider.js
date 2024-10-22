@@ -8,7 +8,8 @@ const Slider = () => {
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src={require("../test/pizza.jpg")}
+            // src={require("../test/pizza.jpg")}
+            src="https://media.istockphoto.com/id/1217108207/photo/shopping-or-delivery-fruits-and-vegetables.jpg?s=612x612&w=0&k=20&c=Fhd4ySZl4lwVoHCPcpOO-UOldzTUYPVEHaNc2cYp3KI="
             alt="food-item1"
           />
           <Carousel.Caption className="text-start text-dark">
@@ -17,7 +18,8 @@ const Slider = () => {
         <Carousel.Item>
           <img
             className="d-block w-100 h-50"
-            src={require("../test/salad.jpg")}
+            // src={require("../test/salad.jpg")}
+            src="https://media.istockphoto.com/id/1217108207/photo/shopping-or-delivery-fruits-and-vegetables.jpg?s=612x612&w=0&k=20&c=Fhd4ySZl4lwVoHCPcpOO-UOldzTUYPVEHaNc2cYp3KI="
             alt="food-item2"
           />
           <Carousel.Caption className="text-start text-dark">
