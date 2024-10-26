@@ -55,7 +55,7 @@ const CartCanvas = ({displayCart, handleClose, JWT, cartItems}) => {
             </ListGroup>
 
             <h4 className="my-3">Total: $
-              {cartItems?.reduce((acc, item) => acc + item.price, 0).toFixed(2)}
+              {cartItems?.reduce((acc, item) => acc + item.price * 1.12, 0).toFixed(2)}
             </h4>
 
             <Button className="my-3" variant="success" >Continue</Button>

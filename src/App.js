@@ -1,15 +1,12 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
-import Product from "./components/Product";
-import Register from "./components/Register";
 import {
   BrowserRouter as Router,
   Route,
   Routes,
   Navigate,
 } from "react-router-dom";
-import Login from "./components/Login";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./components/Home";
 import Subnav from "./components/Subnav";
@@ -29,9 +26,10 @@ function App() {
   };
 
   const addToCart = (newItem) => {
-    setItems([...items, newItem]);
-    // console.log(items);
-    showToast("Added to cart");
+    if (JWT !== "") {      
+      setItems([...items, newItem]);
+      showToast("Added to cart");
+    }
   }
 
   const handleRegister = async (userData) => {
@@ -100,7 +98,7 @@ function App() {
     };
 
     fetchData();
-  }, []); // need to include the dependency array [] or this will cause a loop to server
+  }, []); // need to include the dependency array [] or will cause a loop to server
   // as useEffect will run after every re-render, which is the case after updating setProduct
 
   return (
