@@ -3,8 +3,13 @@ import { Button, Col, Offcanvas, Row } from 'react-bootstrap'
 import { ListGroup } from 'react-bootstrap';
 import { Image } from 'react-bootstrap';
 
-const CartCanvas = ({displayCart, handleClose, JWT, cartItems}) => {
+const CartCanvas = ({displayCart, handleClose, JWT, cartItems, handleCheckout}) => {
   const [problem, setProblem] = useState(false);
+
+  const handleSubmit = (e) => {
+    const price = parseInt(cartItems?.reduce((acc, item) => acc + item.price * 1.12, 0).toFixed(2));
+    handleCheckout(price);
+  }
 
   useEffect(() => {
     const handleRequest = async () => {
@@ -58,7 +63,7 @@ const CartCanvas = ({displayCart, handleClose, JWT, cartItems}) => {
               {cartItems?.reduce((acc, item) => acc + item.price * 1.12, 0).toFixed(2)}
             </h4>
 
-            <Button className="my-3" variant="success" >Continue</Button>
+            <Button onClick={handleSubmit} className="my-3" variant="success" >Checkout</Button>
           </Offcanvas.Body>
         )}
 

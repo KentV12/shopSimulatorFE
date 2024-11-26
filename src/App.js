@@ -17,14 +17,40 @@ import Toast, { showToast } from "./components/Toast";
 
 function App() {
   const [JWT, setJWT] = useState("");
+  const [username, setUsername] = useState("");
   const [displayCart, setDisplayCart] = useState(false);
   const [items, setItems] = useState([]);
   const [products, setProducts] = useState([]);
 
+  // handle checkout
+  const handleCheckout = async (price) => {
+
+    try {
+      const response = await fetch("/purchase/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({username, price}),
+      });
+
+      if (response.ok) {
+        // Successful purchase
+      } else {
+        // Handle failed purchase
+      }
+    } catch (error) {
+      console.error("Error during purchase:", error);
+    }
+    // setItems([]);
+  }
+
+  // handle logging out of account
   const handleLogout = () => {
     setJWT("");
   };
 
+  // handle adding one item to cart
   const addToCart = (newItem) => {
     if (JWT !== "") {      
       setItems([...items, newItem]);
@@ -32,6 +58,7 @@ function App() {
     }
   }
 
+  // handle user registration
   const handleRegister = async (userData) => {
     try {
       const response = await fetch("/register", {
@@ -52,6 +79,7 @@ function App() {
     }
   };
 
+  // handle user login
   const handleLogin = async (userData) => {
     try {
       const response = await fetch("/authenticate", {
@@ -65,6 +93,7 @@ function App() {
       if (response.ok) {
         response.text().then(function (data) {
           setJWT(data);
+          setUsername(userData.username)
         });
       } else {
         // Handle failed login
@@ -74,10 +103,12 @@ function App() {
     }
   };
 
+  // handle cart display
   const handleCart = () => {
     setDisplayCart(!displayCart);
   };
 
+  // fetch available products
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -111,7 +142,7 @@ function App() {
       />
 
       <Subnav />
-      <CartCanvas displayCart={displayCart} handleClose={handleCart} JWT={JWT} cartItems={items}/>
+      <CartCanvas displayCart={displayCart} handleClose={handleCart} JWT={JWT} cartItems={items} handleCheckout={handleCheckout}/>
       <Toast />
 
       <Routes>
